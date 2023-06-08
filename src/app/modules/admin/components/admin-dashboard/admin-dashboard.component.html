@@ -1,0 +1,35 @@
+<app-admin-navbar ></app-admin-navbar>
+
+
+
+<div class="container my-5 w-full">
+
+  <div class="flex justify-end">
+    <button class="bg-green-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded mr-40 mb-5" (click)="addUser()">
+      +Add User
+    </button>
+  </div>
+  
+  <table class="w-10/12 border border-gray-300 mx-auto">
+    <thead>
+      <tr>
+        <th class="py-2 px-4 border-b">Index No.</th>
+        <th class="py-2 px-4 border-b">Name</th>
+        <th class="py-2 px-4 border-b">Email</th>
+        <th class="py-2 px-4 border-b">Actions</th>
+      </tr>
+    </thead>
+    <tbody *ngIf="(Alluser$ | async) as users">
+      <tr *ngFor="let item of users;let i = index">
+        <td class="text-center py-2 px-4 border-b">{{i+1}}</td>
+        <td class="text-center py-2 px-4 border-b">{{item.name}}</td>
+        <td class="text-center py-2 px-4 border-b">{{item.email}}</td>
+        <td class="text-center py-2 px-4 border-b">
+          <button class="text-white font-bold py-2 mx-4 hover:text-blue-700 rounded px-4 bg-blue-500" (click)="editUser(item._id)">Edit</button>
+          <button class="text-white font-bold py-2 hover:text-red-700 rounded px-4 bg-red-500"
+            (click)="deleteUser(item._id)">Delete</button>
+        </td>
+      </tr>
+    </tbody>
+  </table>
+</div>
